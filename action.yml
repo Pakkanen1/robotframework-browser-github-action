@@ -14,7 +14,7 @@ inputs:
   robot_command:
     description: 'The robot command for running the tests'
     required: true
-    default: 'robot --outputdir ${{ inputs.reports_dir }} ${{ inputs.tests_dir }}'
+    default: ''
 
 runs:
   using: 'composite'
