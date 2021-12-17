@@ -4,4 +4,4 @@ docker run --rm \
  --user pwuser \
  --security-opt seccomp=$dir/seccomp_profile.json \
  $IMAGE:$IMAGE_VERSION \
- bash -c "chown pwuser:pwuser && $ROBOT_COMMAND"
+ bash -c "chown -R pwuser:pwuser /test && $ROBOT_COMMAND"
