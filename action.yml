@@ -1,0 +1,36 @@
+name: 'Robot Framework Browser Action'
+description: 'Run test with Robot Framework Browser on Github Action'
+branding: 
+  color: 'teal'
+inputs:
+  image_version:
+    description: 'The version of the marketsquare/robotframework-browser container'
+    required: true
+    default: 'latest'
+  tests_dir:
+    description: 'Directory where Robot tests are located in the repository'
+    required: true
+    default: 'robot_tests'
+  reports_dir:
+    description: 'Where will the report from test be saved'
+    required: true
+    default: 'reports'
+  robot_command:
+    description: 'The robot command for running the tests'
+    required: true
+    default: 'robot --outputdir ${{ inputs.reports_dir }} ${{ inputs.tests_dir }}'
+
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      run: chmod 777 ${{ github.action_path }}/run-browser-tests.sh
+    
+    - shell: bash
+      run: ${{ github.action_path }}/run-browser-tests.sh
+      env:
+        IMAGE: marketsquare/robotframework-browser
+        IMAGE_VERSION: ${{ inputs.image_version }}
+        TESTS_DIR: ${{ inputs.tests_dir }}
+        REPORTS_DIR: ${{ inputs.reports_dir }}
+        ROBOT_COMMAND: ${{ inputs.robot_command }}
