@@ -1,5 +1,4 @@
 dir=$(dirname $0)
-echo $dir/seccomp_profile.json
 docker run --rm \
  -v $TESTS_DIR:/test \
  --user pwuser \
