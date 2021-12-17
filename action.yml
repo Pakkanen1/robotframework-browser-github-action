@@ -11,10 +11,6 @@ inputs:
     description: 'Directory where Robot tests are located in the repository'
     required: true
     default: 'robot_tests'
-  reports_dir:
-    description: 'Where will the report from test be saved'
-    required: true
-    default: 'reports'
   robot_command:
     description: 'The robot command for running the tests'
     required: true
@@ -32,5 +28,4 @@ runs:
         IMAGE: marketsquare/robotframework-browser
         IMAGE_VERSION: ${{ inputs.image_version }}
         TESTS_DIR: ${{ inputs.tests_dir }}
-        REPORTS_DIR: ${{ inputs.reports_dir }}
         ROBOT_COMMAND: ${{ inputs.robot_command }}
